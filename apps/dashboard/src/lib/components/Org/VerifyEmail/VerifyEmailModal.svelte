@@ -11,7 +11,7 @@
   import { profile } from '$lib/utils/store/user';
   import { onMount, onDestroy } from 'svelte';
   import { browser } from '$app/environment';
-  import { PUBLIC_IS_SELFHOSTED } from '$env/static/public';
+  import { PUBLIC_IS_SELFHOSTED, PUBLIC_HIDE_VERIFICATION_MODAL } from '$env/static/public';
 
   const WAIT_SEC = 120;
   const WAIT_TIME = WAIT_SEC * 1000;
@@ -26,7 +26,7 @@
 
   // Security protection - disable all interactions when email not verified
   function setupDOMProtection() {
-    if (!browser || PUBLIC_IS_SELFHOSTED === 'true') return;
+    if (!browser || PUBLIC_IS_SELFHOSTED === 'true' || PUBLIC_HIDE_VERIFICATION_MODAL === 'true') return;
 
     // Function to disable all interactive elements
     function disableInteractions() {
@@ -271,7 +271,8 @@
     !$profile.is_email_verified &&
       !!$profile.id &&
       !!$currentOrg.id &&
-      PUBLIC_IS_SELFHOSTED !== 'true'
+      PUBLIC_IS_SELFHOSTED !== 'true' &&
+      PUBLIC_HIDE_VERIFICATION_MODAL !== 'true'
   );
   $: open && sendVerificationCode();
   $: if (browser) updateBodyClass();

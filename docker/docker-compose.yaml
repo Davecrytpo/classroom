@@ -13,9 +13,6 @@ services:
 
   api:
     container_name: cio-api
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.api
     image: classroomio/api:latest
     ports:
       - "3081:3081"
@@ -41,9 +38,6 @@ services:
       - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID}
 
   dashboard:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.dashboard
     image: classroomio/dashboard:latest
     ports:
       - "3082:3082"
