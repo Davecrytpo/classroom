@@ -11,11 +11,14 @@ services:
     image: classroomio/api:latest
     ports:
       - "3081:3081"
+    env_file:
+      - ../.env
     environment:
       - NODE_ENV=production
       # Supabase - Database
       - PUBLIC_SUPABASE_ANON_KEY=${PUBLIC_SUPABASE_ANON_KEY}
       - PUBLIC_SUPABASE_URL=${PUBLIC_SUPABASE_URL}
+      - PRIVATE_SUPABASE_SERVICE_ROLE=${PRIVATE_SUPABASE_SERVICE_ROLE}
       # Cloudflare - Video upload
       - CLOUDFLARE_BUCKET_DOMAIN=${CLOUDFLARE_BUCKET_DOMAIN}
       - CLOUDFLARE_ACCESS_KEY=${CLOUDFLARE_ACCESS_KEY}
@@ -34,6 +37,8 @@ services:
     image: classroomio/dashboard:latest
     ports:
       - "3082:3082"
+    env_file:
+      - ../.env
     environment:
       - PUBLIC_IS_SELFHOSTED=true
       # Supabase - Database
