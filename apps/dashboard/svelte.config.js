@@ -105,7 +105,7 @@ const config = {
         'connect-src': [
           'self',
           'https://*.supabase.co',
-          'https://pgrest.classroomio.com',
+          'https://xcylokfdqjothbvvbftv.supabase.co',
           'https://api.classroomio.com',
           'https://assets.cdn.clsrio.com',
           'https://cdn.plyr.io',
@@ -130,3 +130,4 @@ const config = {
 };
 
 export default config;
+

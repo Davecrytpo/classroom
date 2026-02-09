@@ -2,16 +2,16 @@ import cloneDeep from 'lodash/cloneDeep';
 
 export const themeImages = {
   standard: {
-    card: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/standard-quiz-card.svg',
+    card: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/standard-quiz-card.svg',
     editor:
-      'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/standard-quiz-editor.svg',
-    play: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/standard-quiz-play.svg'
+      'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/standard-quiz-editor.svg',
+    play: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/standard-quiz-play.svg'
   },
   mainland: {
-    card: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/mainstream-quiz-card.svg',
+    card: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/mainstream-quiz-card.svg',
     editor:
-      'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/mainstream-quiz-editor.svg',
-    play: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/mainstream-quiz-play.svg'
+      'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/mainstream-quiz-editor.svg',
+    play: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/mainstream-quiz-play.svg'
   }
 };
 
@@ -22,12 +22,12 @@ export const defOption = {
 };
 
 export const optionImage = {
-  circle: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/circle.svg',
-  spade: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/spade.svg',
-  square: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/square.svg',
-  pentagon: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/pentagon.svg',
-  hexagon: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/hexagon.svg',
-  triangle: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/triangle.svg'
+  circle: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/circle.svg',
+  spade: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/spade.svg',
+  square: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/square.svg',
+  pentagon: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/pentagon.svg',
+  hexagon: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/hexagon.svg',
+  triangle: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/triangle.svg'
 };
 
 export const allOptions = [
@@ -66,12 +66,12 @@ export const booleanOptions = [
   {
     id: 'triangle',
     label: 'True',
-    image: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/triangle.svg'
+    image: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/triangle.svg'
   },
   {
     id: 'square',
     label: 'False',
-    image: 'https://pgrest.classroomio.com/storage/v1/object/public/avatars/quizes/square.svg'
+    image: 'https://xcylokfdqjothbvvbftv.supabase.co/storage/v1/object/public/avatars/quizes/square.svg'
   }
 ];
 export const allThemes = [
@@ -100,3 +100,4 @@ export const STEPS = {
   SCOREBOARD: 'SCOREBOARD',
   PODIUM: 'PODIUM'
 };
+
