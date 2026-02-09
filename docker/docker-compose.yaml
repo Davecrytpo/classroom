@@ -12,6 +12,7 @@ services:
     restart: always
 
   api:
+    container_name: cio-api
     image: classroomio/api:latest
     ports:
       - "3081:3081"
@@ -22,9 +23,8 @@ services:
     environment:
       - NODE_ENV=production
       - REDIS_URL=redis://redis:6379
-      # Supabase - Database
-      - PUBLIC_SUPABASE_ANON_KEY=${PUBLIC_SUPABASE_ANON_KEY}
       - PUBLIC_SUPABASE_URL=${PUBLIC_SUPABASE_URL}
+      - PUBLIC_SUPABASE_ANON_KEY=${PUBLIC_SUPABASE_ANON_KEY}
       - PRIVATE_SUPABASE_SERVICE_ROLE=${PRIVATE_SUPABASE_SERVICE_ROLE}
       # Cloudflare - Video upload
       - CLOUDFLARE_BUCKET_DOMAIN=${CLOUDFLARE_BUCKET_DOMAIN}
