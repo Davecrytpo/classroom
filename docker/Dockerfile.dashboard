@@ -24,10 +24,10 @@ ENV PUBLIC_IS_SELFHOSTED=$PUBLIC_IS_SELFHOSTED \
     PUBLIC_SUPABASE_ANON_KEY=$PUBLIC_SUPABASE_ANON_KEY \
     PUBLIC_SERVER_URL=$PUBLIC_SERVER_URL \
     PUBLIC_EMAIL_SENDER=$PUBLIC_EMAIL_SENDER \
-    PUBLIC_HIDE_VERIFICATION_MODAL=$PUBLIC_HIDE_VERIFICATION_MODAL \
-    NODE_OPTIONS="--max-old-space-size=4096"
+    PUBLIC_HIDE_VERIFICATION_MODAL=$PUBLIC_HIDE_VERIFICATION_MODAL
 
-RUN pnpm build --filter @cio/dashboard
+# Increase memory limit and build
+RUN NODE_OPTIONS="--max-old-space-size=4096" pnpm build --filter @cio/dashboard
 
 # Use pnpm deploy to prune dependencies for production
 RUN pnpm --filter @cio/dashboard --prod deploy pruned --legacy
