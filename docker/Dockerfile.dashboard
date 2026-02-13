@@ -12,7 +12,7 @@ RUN pnpm install
 RUN PUBLIC_IS_SELFHOSTED=true pnpm build --filter @cio/dashboard
 
 # Use pnpm deploy to prune dependencies for production
-RUN pnpm --filter @cio/dashboard --prod deploy pruned
+RUN pnpm --filter @cio/dashboard --prod deploy pruned --legacy
 
 # ----------- Production Stage -----------
 FROM node:20.19.3-slim AS runner

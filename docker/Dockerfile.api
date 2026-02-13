@@ -12,7 +12,7 @@ RUN pnpm install
 RUN pnpm build --filter @cio/api
 
 # Use pnpm deploy to prune dependencies for production
-RUN pnpm --filter @cio/api --prod deploy pruned
+RUN pnpm --filter @cio/api --prod deploy pruned --legacy
 
 # ----------- Production Stage -----------
 FROM node:20.19.3-slim AS runner
