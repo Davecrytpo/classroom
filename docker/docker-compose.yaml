@@ -14,6 +14,9 @@ services:
   api:
     container_name: cio-api
     image: classroomio/api:latest
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.api
     ports:
       - "3081:3081"
     depends_on:
@@ -40,6 +43,9 @@ services:
 
   dashboard:
     image: classroomio/dashboard:latest
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dashboard
     ports:
       - "3082:3082"
     env_file:
@@ -53,6 +59,9 @@ services:
       - PUBLIC_SERVER_URL=${PUBLIC_SERVER_URL}
       - PUBLIC_EMAIL_SENDER=${PUBLIC_EMAIL_SENDER}
       - PRIVATE_APP_HOST=${PRIVATE_APP_HOST}
+      - PRIVATE_APP_SUBDOMAINS=${PRIVATE_APP_SUBDOMAINS}
+    depends_on:
+      - api
       - PRIVATE_APP_SUBDOMAINS=${PRIVATE_APP_SUBDOMAINS}
     depends_on:
       - api
