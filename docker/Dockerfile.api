@@ -9,6 +9,7 @@ COPY . .
 
 # Install dependencies and build
 RUN pnpm install
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN pnpm build --filter @cio/api
 
 # Use pnpm deploy to prune dependencies for production
