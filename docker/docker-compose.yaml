@@ -44,6 +44,13 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.dashboard
+      args:
+        - PUBLIC_IS_SELFHOSTED=true
+        - PUBLIC_SUPABASE_URL=${PUBLIC_SUPABASE_URL}
+        - PUBLIC_SUPABASE_ANON_KEY=${PUBLIC_SUPABASE_ANON_KEY}
+        - PUBLIC_SERVER_URL=${PUBLIC_SERVER_URL}
+        - PUBLIC_EMAIL_SENDER=${PUBLIC_EMAIL_SENDER}
+        - PUBLIC_HIDE_VERIFICATION_MODAL=${PUBLIC_HIDE_VERIFICATION_MODAL}
     ports:
       - "3082:3082"
     env_file:

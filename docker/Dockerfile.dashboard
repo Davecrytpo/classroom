@@ -9,7 +9,24 @@ COPY . .
 
 # Install dependencies and build
 RUN pnpm install
-RUN PUBLIC_IS_SELFHOSTED=true pnpm build --filter @cio/dashboard
+
+# Add ARGs for build-time environment variables
+ARG PUBLIC_IS_SELFHOSTED
+ARG PUBLIC_SUPABASE_URL
+ARG PUBLIC_SUPABASE_ANON_KEY
+ARG PUBLIC_SERVER_URL
+ARG PUBLIC_EMAIL_SENDER
+ARG PUBLIC_HIDE_VERIFICATION_MODAL
+
+# Set them as ENV so the build process can see them
+ENV PUBLIC_IS_SELFHOSTED=$PUBLIC_IS_SELFHOSTED \
+    PUBLIC_SUPABASE_URL=$PUBLIC_SUPABASE_URL \
+    PUBLIC_SUPABASE_ANON_KEY=$PUBLIC_SUPABASE_ANON_KEY \
+    PUBLIC_SERVER_URL=$PUBLIC_SERVER_URL \
+    PUBLIC_EMAIL_SENDER=$PUBLIC_EMAIL_SENDER \
+    PUBLIC_HIDE_VERIFICATION_MODAL=$PUBLIC_HIDE_VERIFICATION_MODAL
+
+RUN pnpm build --filter @cio/dashboard
 
 # Use pnpm deploy to prune dependencies for production
 RUN pnpm --filter @cio/dashboard --prod deploy pruned --legacy
