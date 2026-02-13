@@ -4,8 +4,6 @@
 # Author: rotimi-best
 # Date: 2024-09-18
 
-version: "3.8"
-
 services:
   redis:
     image: redis:alpine
@@ -59,9 +57,6 @@ services:
       - PUBLIC_SERVER_URL=${PUBLIC_SERVER_URL}
       - PUBLIC_EMAIL_SENDER=${PUBLIC_EMAIL_SENDER}
       - PRIVATE_APP_HOST=${PRIVATE_APP_HOST}
-      - PRIVATE_APP_SUBDOMAINS=${PRIVATE_APP_SUBDOMAINS}
-    depends_on:
-      - api
       - PRIVATE_APP_SUBDOMAINS=${PRIVATE_APP_SUBDOMAINS}
     depends_on:
       - api
