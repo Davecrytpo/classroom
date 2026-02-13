@@ -13,6 +13,7 @@ const envSchema = z.object({
   PUBLIC_SUPABASE_URL: z.string(),
   PRIVATE_SUPABASE_SERVICE_ROLE: z.string(),
   REDIS_URL: z.string().optional(),
+  SENDGRID_API_KEY: z.string().optional(),
   SMTP_HOST: z.string().optional(),
   SMTP_PASSWORD: z.string().optional(),
   SMTP_PORT: z.string().optional(),

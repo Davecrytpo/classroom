@@ -12,7 +12,7 @@ export async function POST({ fetch, request }) {
 
   const emailData = [
     {
-      from: `"${orgName} (via ClassroomIO.com)" <notify@mail.classroomio.com>`,
+      from: getEmailSender(`${orgName} (via ClassroomIO.com)`),
       to,
       subject: `${orgName} - Welcome to Class 🎉`,
       content: `
@@ -32,3 +32,4 @@ export async function POST({ fetch, request }) {
     message: 'Email sent'
   });
 }
+

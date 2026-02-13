@@ -1,9 +1,10 @@
 import { extractNameAndEmail, withEmailTemplate } from '$src/utils/mail';
-import { nodemailerTransporter, zohoClient } from '$src/utils/email';
+import { nodemailerTransporter, sendgridApiKey, zohoClient } from '$src/utils/email';
 
 import { Hono } from 'hono';
 import type { TSendEmailValidation } from '$src/types/mail';
 import type { Transporter } from 'nodemailer';
+import axios from 'axios';
 import { env } from '$src/config/env';
 
 export const mailRouter = new Hono();
@@ -19,6 +20,62 @@ let transporter: Transporter | null;
 nodemailerTransporter().then((t: Transporter | null) => {
   transporter = t;
 });
+
+export async function sendWithSendGrid(
+  emailData: TSendEmailValidation[0]
+): Promise<EmailResponse> {
+  const { from, to, subject, content, replyTo } = emailData;
+
+  if (!sendgridApiKey) {
+    return {
+      success: false,
+      error: 'SendGrid API key not configured'
+    };
+  }
+
+  try {
+    const fromData = extractNameAndEmail(from || env.SMTP_SENDER || '');
+    const response = await axios.post(
+      'https://api.sendgrid.com/v3/mail/send',
+      {
+        personalizations: [
+          {
+            to: [{ email: to }],
+            subject: subject
+          }
+        ],
+        from: {
+          email: fromData?.email || env.SMTP_SENDER,
+          name: fromData?.name
+        },
+        content: [
+          {
+            type: 'text/html',
+            value: withEmailTemplate(content)
+          }
+        ],
+        reply_to: replyTo ? { email: replyTo } : undefined
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${sendgridApiKey}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    return {
+      success: true,
+      details: response.data
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: axios.isAxiosError(error) ? error.response?.data : (error as Error).message,
+      details: error
+    };
+  }
+}
 
 export async function sendWithNodemailer(
   emailData: TSendEmailValidation[0]

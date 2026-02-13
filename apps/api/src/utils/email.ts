@@ -8,6 +8,8 @@ export const zohoClient = new SendMailClient({
   token: env.ZOHO_TOKEN!
 });
 
+export const sendgridApiKey = env.SENDGRID_API_KEY;
+
 export const nodemailerTransporter = async (): Promise<Transporter | null> => {
   if (!env.SMTP_HOST || !env.SMTP_PORT || !env.SMTP_USER || !env.SMTP_PASSWORD) {
     console.error('SMTP configuration missing');

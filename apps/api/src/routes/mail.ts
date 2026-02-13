@@ -1,4 +1,4 @@
-import { sendWithNodemailer, sendWithZoho } from '$src/services/mail';
+import { sendWithNodemailer, sendWithSendGrid, sendWithZoho } from '$src/services/mail';
 
 import { Hono } from 'hono';
 import { ZSendEmailValidation } from '$src/types/mail';
@@ -17,14 +17,24 @@ export const mailRouter = new Hono().post(
           throw new Error('Sending from test.com addresses is not allowed');
         }
 
-        if (!emailData.from?.includes('<notify@mail.classroomio.com>')) {
-          throw new Error('Emails must be sent from a @mail.classroomio.com address');
+        const allowedSender = env.SMTP_SENDER || 'notify@mail.classroomio.com';
+        if (
+          emailData.from &&
+          !emailData.from.includes(allowedSender) &&
+          !emailData.from.includes('mail.classroomio.com')
+        ) {
+          console.warn(`Email from ${emailData.from} does not match allowed sender ${allowedSender}`);
         }
 
         try {
-          const res = env.ZOHO_TOKEN
-            ? await sendWithZoho(emailData)
-            : await sendWithNodemailer(emailData);
+          let res;
+          if (env.SENDGRID_API_KEY) {
+            res = await sendWithSendGrid(emailData);
+          } else if (env.ZOHO_TOKEN) {
+            res = await sendWithZoho(emailData);
+          } else {
+            res = await sendWithNodemailer(emailData);
+          }
 
           console.log('Email status:', res);
           return res;
